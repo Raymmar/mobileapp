@@ -25,9 +25,11 @@ import coredevices.coreapp.ui.screens.BugReportScreen
 import coredevices.coreapp.ui.screens.BugReportsListScreen
 import coredevices.coreapp.ui.screens.OnboardingScreen
 import coredevices.coreapp.ui.screens.ringonboarding.RingOnboardingScreen
+import coredevices.coreapp.ui.screens.ringhome.RingHomeScreen
 import coredevices.coreapp.ui.screens.ViewBugReportScreen
 import coredevices.coreapp.ui.screens.WatchOnboardingScreen
 import coredevices.pebble.PebbleDeepLinkHandler
+import coredevices.pebble.ui.PebbleNavBarRoutes
 import coredevices.pebble.ui.PebbleRoutes
 import coredevices.pebble.ui.addPebbleRoutes
 import coredevices.pebble.ui.toNavBarRoute
@@ -76,6 +78,12 @@ fun AppNavHost(navController: NavHostController, startDestination: Any) {
                         if (route == null || route.consumed) {
                             return@collect
                         }
+                        if (route.route == PebbleNavBarRoutes.IndexRoute) {
+                            if (navController.currentBackStackEntry?.destination?.hasRoute<CommonRoutes.RingHomeRoute>() != true) {
+                                navController.navigate(CommonRoutes.RingHomeRoute) { launchSingleTop = true }
+                            }
+                            return@collect
+                        }
                         val isOnWatchHome = navController.currentBackStackEntry?.destination?.hasRoute<PebbleRoutes.WatchHomeRoute>() == true
                         // Pebble deep links need us to navigate to WatchHomeScreen - but only if we
                         // aren't already there.
@@ -98,7 +106,7 @@ fun AppNavHost(navController: NavHostController, startDestination: Any) {
                     pebbleDeepLinks.navigateToLockerTab(route.initialTab)
                     return
                 }
-                if (route == PebbleRoutes.WatchHomeRoute) {
+                if (route == CommonRoutes.RingHomeRoute) {
                     navController.popBackStack(CommonRoutes.OnboardingRoute, true)
                 }
                 navController.navigate(route)
@@ -121,6 +129,9 @@ fun AppNavHost(navController: NavHostController, startDestination: Any) {
         }
     }
     NavHost(navController, startDestination = startDestination) {
+        composable<CommonRoutes.RingHomeRoute> {
+            IndexThemeHost { RingHomeScreen(coreNav) }
+        }
         addRingRoutes(coreNav)
         addPebbleRoutes(
             coreNav,

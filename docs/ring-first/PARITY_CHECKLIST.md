@@ -4,7 +4,7 @@ Each ring capability from the 2.0.0 app, the evidence used to show it still work
 
 - **Auto** = automated tests that run in CI / the sandbox (`testAndroidHostTest`, `allTests`).
 - **Ring** = physical-ring test the user runs (IDs `H*` refer to [HARDWARE_TEST_PLAN.md](HARDWARE_TEST_PLAN.md)).
-- Status: `baseline` = passed at 2.0.0; `pass` = passed on the ring-first branch; `pending-user` = waiting on a physical-ring result; `n/a` = not applicable.
+- Status: `baseline` = passed at 2.0.0 and still passing on ring-first (full suite 1249/0 failures); `pass` = passed on the ring-first branch; `pending-user` = waiting on a physical-ring result; `n/a` = not applicable.
 
 | # | Capability | Key code | Auto evidence | Ring evidence | Status |
 |---|---|---|---|---|---|

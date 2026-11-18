@@ -1,5 +1,6 @@
 package coredevices.coreapp.ui.screens
 
+import CommonRoutes
 import CoreNav
 import NoOpCoreNav
 import PlatformUiContext
@@ -51,7 +52,6 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.set
 import coreapp.composeapp.generated.resources.Res
 import coreapp.composeapp.generated.resources.pebble_logo
-import coredevices.pebble.ui.PebbleRoutes
 import coredevices.pebble.ui.PreviewWrapper
 import coredevices.ui.PebbleElevatedButton
 import coredevices.ui.SecondaryProfileWarningDialog
@@ -148,7 +148,7 @@ fun OnboardingScreen(
         logger.v { "exitOnboarding" }
         settings[SHOWN_ONBOARDING] = true
         doneInitialOnboarding.onDoneInitialOnboarding()
-        coreNav.navigateTo(PebbleRoutes.WatchHomeRoute)
+        coreNav.navigateTo(CommonRoutes.RingHomeRoute)
     }
 
     suspend fun requestPermission(permission: Permission, uiContext: PlatformUiContext) {
@@ -175,9 +175,7 @@ fun OnboardingScreen(
                         Spacer(modifier = Modifier.height(15.dp))
                         PebbleElevatedButton(
                             text = "Get Started",
-                            onClick = {
-                                viewModel.stage.value = OnboardingStage.DeviceSelection
-                            },
+                            onClick = { chooseIndexDevice(DeviceChoice.Index01) },
                             primaryColor = true,
                         )
                     }
@@ -292,7 +290,7 @@ fun OnboardingScreen(
                             modifier = Modifier.padding(bottom = 25.dp),
                         )
                         Spacer(modifier = Modifier.height(10.dp))
-                        Text("Sign in to backup your Pebble account to backup apps, settings, etc", textAlign = TextAlign.Center)
+                        Text("Sign in to back up your notes, recordings and ring settings", textAlign = TextAlign.Center)
                         SignInButtons(
                             onDismiss = { viewModel.stage.value = OnboardingStage.Done },
                             primaryColor = true,
@@ -317,7 +315,7 @@ fun OnboardingScreen(
                         verticalArrangement = Arrangement.Center,
                     ) {
                         PebbleElevatedButton(
-                            text = "Connect a Pebble!",
+                            text = "Set up my Index 01",
                             onClick = ::exitOnboarding,
                             primaryColor = true,
                         )

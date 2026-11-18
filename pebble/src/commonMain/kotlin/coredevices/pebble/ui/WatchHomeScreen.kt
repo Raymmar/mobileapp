@@ -860,7 +860,7 @@ private const val HAS_SEEN_WATCH_ONBOARDING_SETTINGS_KEY = "hasSeenWatchOnboardi
 private const val HAS_SEEN_RING_ONBOARDING_SETTINGS_KEY = "hasSeenRingOnboarding"
 private fun Settings.hasSeenWatchOnboarding() = getBoolean(HAS_SEEN_WATCH_ONBOARDING_SETTINGS_KEY, false)
 private fun Settings.setHasSeenWatchOnboarding(seen: Boolean) = set(HAS_SEEN_WATCH_ONBOARDING_SETTINGS_KEY, seen)
-private fun Settings.hasSeenRingOnboarding() = getBoolean(HAS_SEEN_RING_ONBOARDING_SETTINGS_KEY, false)
+fun Settings.hasSeenRingOnboarding() = getBoolean(HAS_SEEN_RING_ONBOARDING_SETTINGS_KEY, false)
 fun Settings.setHasSeenRingOnboarding(seen: Boolean) = set(HAS_SEEN_RING_ONBOARDING_SETTINGS_KEY, seen)
 
 /**

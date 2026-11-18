@@ -12,7 +12,6 @@ import co.touchlab.kermit.Logger
 import com.russhwolf.settings.Settings
 import coredevices.coreapp.ui.navigation.AppNavHost
 import coredevices.coreapp.ui.screens.SHOWN_ONBOARDING
-import coredevices.pebble.ui.PebbleRoutes
 import coredevices.ring.ui.screens.settings.DefaultDestinationPromptHost
 import coredevices.ui.dismissKeyboardOnTapOutside
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -36,7 +35,7 @@ fun App() {
     AppTheme {
         val settings: Settings = koinInject()
         val startDestination = if (settings.getBoolean(SHOWN_ONBOARDING, false)) {
-            PebbleRoutes.WatchHomeRoute
+            CommonRoutes.RingHomeRoute
         } else {
             CommonRoutes.OnboardingRoute
         }
