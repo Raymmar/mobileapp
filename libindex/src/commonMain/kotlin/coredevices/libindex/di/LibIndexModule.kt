@@ -2,6 +2,7 @@ package coredevices.libindex.di
 
 import coredevices.libindex.LibIndex
 import coredevices.libindex.RealLibIndex
+import coredevices.libindex.core.RingController
 import coredevices.libindex.Rings
 import coredevices.libindex.Scanning
 import coredevices.libindex.device.IndexDeviceFactory
@@ -41,6 +42,7 @@ val libIndexModule = module {
         )
     } bind Rings::class
     singleOf(::RealScanning) bind Scanning::class
+    single { RingController(get<RealScanning>(), get<IndexDeviceManager>()) }
     single {
         RealLibIndex(
             get(),

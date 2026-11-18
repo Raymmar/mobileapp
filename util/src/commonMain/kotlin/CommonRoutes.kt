@@ -63,6 +63,9 @@ object CommonRoutes {
     @Serializable
     data object RingOnboardingRoute : CoreRoute
 
+    @Serializable
+    data object RingHomeRoute : CoreRoute
+
     /** Dialog offering to download the on-device speech model the configured engine needs.
      *  Routed so it can be opened from a notification on top of whatever screen is showing. */
     @Serializable
